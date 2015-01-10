@@ -1,9 +1,11 @@
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+
 
 public class Count {
     public static void main(String[] args) throws Exception {
@@ -12,6 +14,7 @@ public class Count {
         Scanner scanner = new Scanner(file,"utf-8");
         PrintStream out = new PrintStream(new FileOutputStream("D:/OutputCountSymbols.txt"));
         System.setOut(out);
+        long lStartTime = new Date().getTime();
         while (scanner.hasNext()) {
             char[] chars = scanner.nextLine().toLowerCase().toCharArray();
             for (Character c : chars) {
@@ -25,6 +28,9 @@ public class Count {
                 }
             }
         }
+        long lEndTime = new Date().getTime();
+        long difference = lEndTime - lStartTime;
+        System.out.println("Elapsed milliseconds: " + difference);
         for (Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
